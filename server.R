@@ -1,5 +1,12 @@
 dat <- mtcars[1:10,c('mpg','cyl','disp','hp')]
 
+values <- reactiveValues()
+values[['dat']] <- dat
+
+changedata <- function(vars) {
+  values[['dat']] <- values[['dat']][,vars]
+}
+
 html_list <- function(vars) {
 
   hl <- "<ul id='sortable'>"
@@ -25,15 +32,21 @@ shinyServer(function(input, output) {
   
   output$sortable <- renderUI({
 
-    makeSortable("sortlist")
     hl <- html_list(input$vars)
     HTML(hl)
   })
 
-  output$showData <- renderTable({
-
+  getdata <- reactive({
     if(is.null(input$vars)) return()
-    dat[,input$vars, drop = FALSE]
+
+    # orderedVars <- makeSortable("sortlist")
+    orderedVars <- input$vars
+    changedata(orderedVars)
+
+  })
+
+  output$showData <- renderTable({
+    getdata()
   })
 
 }) 

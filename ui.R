@@ -2,7 +2,6 @@ shinyUI(
   pageWithSidebar(
   
     headerPanel('Sortable list'),
-
     
     sidebarPanel(
       tags$html(includeHTML('www/sort.html')),
