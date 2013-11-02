@@ -11,7 +11,6 @@ shinyUI(
     ),
     
     mainPanel(
-      # htmlOutput('sortable'),
       uiOutput('sortable'),
       tableOutput('showData')
     )

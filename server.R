@@ -33,6 +33,7 @@ shinyServer(function(input, output) {
   output$sortable <- renderUI({
 
     hl <- html_list(input$vars)
+    print(hl)
     HTML(hl)
   })
 
@@ -50,5 +51,4 @@ shinyServer(function(input, output) {
   })
 
 }) 
-
 
