@@ -1,11 +1,6 @@
+options(shiny.trace=TRUE)
+
 dat <- mtcars[1:10,c('mpg','cyl','disp','hp')]
-
-values <- reactiveValues()
-values[['dat']] <- dat
-
-changedata <- function(vars) {
-  values[['dat']] <- values[['dat']][,vars]
-}
 
 html_list <- function(vars) {
 
@@ -18,7 +13,6 @@ html_list <- function(vars) {
 }
 
 makeSortable <- function(inputId) {
-  
   tags$input(id = inputId, class = 'returnOrder')
 }
 
@@ -33,16 +27,17 @@ shinyServer(function(input, output) {
   output$sortable <- renderUI({
 
     hl <- html_list(input$vars)
-    print(hl)
     HTML(hl)
   })
 
   getdata <- reactive({
     if(is.null(input$vars)) return()
 
-    # orderedVars <- makeSortable("sortlist")
+    # makeSortable should return the order of the sortable list
+    # which it doesn't now. 
+    # orderedVars <- makeSortable("something")
     orderedVars <- input$vars
-    changedata(orderedVars)
+    dat[,orderedVars, drop = FALSE]
 
   })
 
