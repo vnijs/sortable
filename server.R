@@ -11,7 +11,7 @@ html_list <- function(vars) {
 
   hl <- "<ul id='sortable'>"
   for(i in vars) {
-    hl <- paste0(hl, "<li class='ui-state-default'>",i,"</li>")
+    hl <- paste0(hl, "<li data-id=",i," class='ui-state-default'>",i,"</li>")
   }
   hl <- paste0(hl, "</ul>")
   hl
