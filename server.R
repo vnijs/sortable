@@ -6,38 +6,32 @@ html_list <- function(vars) {
 
   hl <- "<ul id='sortable'>"
   for(i in vars) {
-    hl <- paste0(hl, "<li data-id=",i," class='ui-state-default'>",i,"</li>")
+    hl <- paste0(hl, "<li class='ui-state-default'><span class='label'>",i,"</span></li>")
   }
   hl <- paste0(hl, "</ul>")
   hl
 }
 
-makeSortable <- function(inputId) {
-  tags$input(id = inputId, class = 'returnOrder')
-}
-
 shinyServer(function(input, output) {
 
-  output$vars <- renderUI({
-
-    vars <- colnames(dat)
-    selectInput("vars", label = "Variables:", choices = vars, selected = vars, multiple = TRUE)
-  })
-  
   output$sortable <- renderUI({
 
-    hl <- html_list(input$vars)
+    hl <- html_list(colnames(dat))
     HTML(hl)
   })
 
-  getdata <- reactive({
-    if(is.null(input$vars)) return()
+  output$showorder <- renderPrint({
+    input$sortable
+  })
 
-    # makeSortable should return the order of the sortable list
-    # which it doesn't now. 
-    # orderedVars <- makeSortable("something")
-    orderedVars <- input$vars
-    dat[,orderedVars, drop = FALSE]
+  getdata <- reactive({
+
+    if(is.null(input$sortable)) {
+      ordVars <- colnames(dat)
+    } else {
+      ordVars <- input$sortable
+    }
+    dat[,ordVars, drop = FALSE]
 
   })
 
@@ -46,4 +40,3 @@ shinyServer(function(input, output) {
   })
 
 }) 
-

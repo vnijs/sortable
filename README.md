@@ -1,4 +1,7 @@
 ## Sortable list in Shiny
 
-Goal: Create a sortable list in Shiny
-Status: Not working (yet)
+Javascript for input binding provided by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8
+
+
+
+
