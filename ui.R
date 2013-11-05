@@ -9,7 +9,7 @@ shinyUI(
       includeCSS('www/sort.css'),
       wellPanel(
         uiOutput('sortable')
-      ),
+      )
     ),
     
     mainPanel(
