@@ -1,10 +1,11 @@
 options(shiny.trace=TRUE)
 
 dat <- mtcars[1:10,c('mpg','cyl','disp','hp')]
+dat2 <- mtcars[1:10,c('drat', 'wt', 'vs')]
 
-html_list <- function(vars) {
+html_list <- function(vars, id) {
 
-  hl <- "<ul id='sortable'>"
+  hl <- paste0("<ul id=\'",id,"\'>")
   for(i in vars) {
     hl <- paste0(hl, "<li class='ui-state-default'><span class='label'>",i,"</span></li>")
   }
@@ -12,11 +13,19 @@ html_list <- function(vars) {
   hl
 }
 
+returnOrder <- function(inputId) {
+  tagList(
+    # singleton(tags$head(tags$script(src = "js/returnTextInputBinding.js"))),
+    # tags$label(label, `for` = inputId),
+    tags$input(id = inputId, class = "returnOrder")
+  )
+}
+
 shinyServer(function(input, output) {
 
   output$sortable <- renderUI({
 
-    hl <- html_list(colnames(dat))
+    hl <- html_list(colnames(dat),'sortable')
     HTML(hl)
   })
 
@@ -38,6 +47,35 @@ shinyServer(function(input, output) {
 
   output$showData <- renderTable({
     getdata()
+  })
+
+
+  # 2nd sortable
+  output$sortable2 <- renderUI({
+
+    hl <- html_list(colnames(dat2),'sortable2')
+    HTML(hl)
+  })
+
+
+  getdata2 <- reactive({
+
+    if(is.null(input$sortable2)) {
+      ordVars <- colnames(dat2)
+    } else {
+      ordVars <- input$sortable2
+    }
+    dat2[,ordVars, drop = FALSE]
+
+  })
+
+  output$showData2 <- renderTable({
+    getdata2()
+  })
+
+  output$showorder2 <- renderPrint({
+    print(input$sortable2)
+    cat("\nShiny binding provided by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8")
   })
 
 }) 

@@ -1,4 +1,13 @@
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 200px; }
+#sortable2 { list-style-type: none; margin: 0; padding: 0; width: 200px; }
 #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+#sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
 html>body #sortable li { height: .5em; line-height: .5em; }
+html>body #sortable2 li { height: .5em; line-height: .5em; }
 .ui-state-highlight { height: .5em; line-height: .5em; }
+
+/*.transfer { list-style-type: none; margin: 0; padding: 0; width: 200px; }
+.transfer li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+html>body .transfer li { height: .5em; line-height: .5em; }
+.ui-state-highlight { height: .5em; line-height: .5em; }
+*/

@@ -5,6 +5,13 @@ $(function() {
   $( '#sortable' ).disableSelection();
 }); 
 
+$(function() {
+  $( '#sortable2' ).sortable({
+    placeholder: 'ui-state-highlight'
+  });
+  $( '#sortable2' ).disableSelection();
+}); 
+
 
 // return order of a sortable list
 // function created by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8 

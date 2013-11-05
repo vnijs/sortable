@@ -9,12 +9,17 @@ shinyUI(
       includeCSS('www/sort.css'),
       wellPanel(
         uiOutput('sortable')
+      ),
+      wellPanel(
+        uiOutput('sortable2')
       )
     ),
     
     mainPanel(
       tableOutput('showData'),
-      verbatimTextOutput('showorder')
+      verbatimTextOutput('showorder'),
+      tableOutput('showData2'),
+      verbatimTextOutput('showorder2')
     )
   )
 )
