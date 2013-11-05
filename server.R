@@ -5,9 +5,9 @@ dat2 <- mtcars[1:10,c('drat', 'wt', 'vs')]
 
 html_list <- function(vars, id) {
 
-  hl <- paste0("<ul id=\'",id,"\'>")
+  hl <- paste0("<ul id=\'",id,"\' class='stab'>")
   for(i in vars) {
-    hl <- paste0(hl, "<li class='ui-state-default'><span class='label'>",i,"</span></li>")
+    hl <- paste0(hl, "<li class='ui-state-default stab'><span class='label'>",i,"</span></li>")
   }
   hl <- paste0(hl, "</ul>")
   hl
