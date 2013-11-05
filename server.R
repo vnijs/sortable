@@ -21,7 +21,8 @@ shinyServer(function(input, output) {
   })
 
   output$showorder <- renderPrint({
-    input$sortable
+    print(input$sortable)
+    cat("\nShiny binding provided by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8")
   })
 
   getdata <- reactive({
