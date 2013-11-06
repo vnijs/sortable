@@ -5,8 +5,6 @@ dat2 <- mtcars[1:5,c('drat', 'wt', 'vs')]
 
 shinyServer(function(input, output) {
 
-  source('global.R', local = TRUE)
-
 
   output$sortable <- renderUI({
 
