@@ -1,29 +1,14 @@
 options(shiny.trace=TRUE)
 
-dat <- mtcars[1:10,c('mpg','cyl','disp','hp')]
-dat2 <- mtcars[1:10,c('drat', 'wt', 'vs')]
-
-html_list <- function(vars, id) {
-
-  hl <- paste0("<ul id=\'",id,"\' class='stab'>")
-  for(i in vars) hl <- paste0(hl, "<li class='ui-state-default stab'><span class='label'>",i,"</span></li>")
-  paste0(hl, "</ul>")
-}
-
-returnOrder <- function(inputId, vars) {
-  tagList(
-    tags$head(tags$script(paste0("$(function() {$( '#",inputId,"' ).sortable({placeholder: 'ui-state-highlight'}); $( '#",inputId,"' ).disableSelection(); });"))),
-    tags$head(tags$script(src = 'js/sort.js')),
-    HTML(html_list(vars, inputId))
-  )
-}
+dat <- mtcars[1:5,c('mpg','cyl','disp','hp')]
+dat2 <- mtcars[1:5,c('drat', 'wt', 'vs')]
 
 shinyServer(function(input, output) {
 
-  output$sortable <- renderUI({
+  source('global.R', local = TRUE)
 
-    # hl <- html_list(colnames(dat),'sortable')
-    # HTML(hl)
+
+  output$sortable <- renderUI({
 
     returnOrder("sortable",colnames(dat))
   })
@@ -49,14 +34,11 @@ shinyServer(function(input, output) {
   })
 
 
-  # 2nd sortable
-  output$sortable2 <- renderUI({
-
-    # hl <- html_list(colnames(dat2),'sortable2')
-    # HTML(hl)
+  # # 2nd sortable
+  # output$sortable2 <- renderUI({
     
-    returnOrder("sortable2",colnames(dat2))
-  })
+  #   returnOrder("sortable2",colnames(dat2))
+  # })
 
 
   getdata2 <- reactive({

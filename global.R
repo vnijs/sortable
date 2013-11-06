@@ -1,0 +1,16 @@
+html_list <- function(vars, id) {
+
+  hl <- paste0("<ul id=\'",id,"\' class='stab'>")
+  for(i in vars) hl <- paste0(hl, "<li class='ui-state-default stab'><span class='label'>",i,"</span></li>")
+  paste0(hl, "</ul>")
+}
+
+returnOrder <- function(inputId, vars) {
+  tagList(
+    tags$html(includeHTML('www/sort.html')),
+    tags$head(tags$script(src = 'js/sort.js')),
+    includeCSS("www/sort.css"),
+    HTML(html_list(vars, inputId)),
+    tags$head(tags$script(paste0("$(function() {$( '#",inputId,"' ).sortable({placeholder: 'ui-state-highlight'}); $( '#",inputId,"' ).disableSelection(); });")))
+  )
+}
