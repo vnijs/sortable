@@ -13,12 +13,6 @@ $(function() {
 }); 
 
 
-// function speed(value,id){
-//   var vid=document.getElementById(id);
-//   vid.playbackRate=value;
-//   $('#pbrate').html(value);
-// }
-
 // return order of a sortable list
 // function created by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8 
 
