@@ -13,7 +13,6 @@ shinyServer(function(input, output) {
 
   output$showorder <- renderPrint({
     print(input$sortable)
-    cat("\nShiny binding provided by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8")
   })
 
   getdata <- reactive({
@@ -54,7 +53,6 @@ shinyServer(function(input, output) {
 
   output$showorder2 <- renderPrint({
     print(input$sortable2)
-    cat("\nShiny binding provided by ZJ: https://groups.google.com/forum/?fromgroups=#!topic/shiny-discuss/f3n5Iv2wNQ8")
   })
 
 }) 
