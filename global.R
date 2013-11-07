@@ -7,9 +7,9 @@ html_list <- function(vars, id) {
 
 returnOrder <- function(inputId, vars) {
   tagList(
-    tags$html(includeHTML('www/sort.html')),
-    tags$head(tags$script(src = 'js/sort.js')),
-    includeCSS("www/sort.css"),
+    # singleton(tags$html(includeHTML('www/sort.html'))),
+    singleton(tags$head(tags$script(src = 'js/sort.js'))),
+    singleton(includeCSS("www/sort.css")),
     HTML(html_list(vars, inputId)),
     tags$head(tags$script(paste0("$(function() {$( '#",inputId,"' ).sortable({placeholder: 'ui-state-highlight'}); $( '#",inputId,"' ).disableSelection(); });")))
   )

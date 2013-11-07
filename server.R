@@ -6,7 +6,7 @@ dat2 <- mtcars[1:5,c('drat', 'wt', 'vs')]
 shinyServer(function(input, output) {
 
 
-  output$sortable <- renderUI({
+  output$sortable_rui <- renderUI({
 
     returnOrder("sortable",colnames(dat))
   })
@@ -32,12 +32,10 @@ shinyServer(function(input, output) {
   })
 
 
-  # # 2nd sortable
-  # output$sortable2 <- renderUI({
-    
-  #   returnOrder("sortable2",colnames(dat2))
-  # })
-
+  # 2nd sortable
+  output$sortable2_rui <- renderUI({
+    returnOrder("sortable2",colnames(dat2))
+  })
 
   getdata2 <- reactive({
 
