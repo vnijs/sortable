@@ -6,6 +6,7 @@ dat2 <- mtcars[1:5,c('drat', 'wt', 'vs')]
 shinyServer(function(input, output) {
 
 
+  # 1st sortable, id's for the renderUI and returnOrder should be different
   output$sortable_rui <- renderUI({
 
     returnOrder("sortable",colnames(dat))

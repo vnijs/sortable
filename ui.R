@@ -4,9 +4,7 @@ shinyUI(
     headerPanel('Sortable list'),
     
     sidebarPanel(
-      tags$html(includeHTML('www/sort.html')),
-      # tags$head(tags$script(src = 'js/sort.js')),
-      # includeCSS("www/sort.css"),
+      tags$head(tags$script(src = "js/jquery-ui.min.js")),
       wellPanel(
         uiOutput('sortable_rui')
       ),
