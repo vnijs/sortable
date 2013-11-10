@@ -9,7 +9,6 @@ shinyUI(
         uiOutput('sortable_rui')
       ),
       wellPanel(
-        # returnOrder("sortable2",c('drat', 'wt', 'vs'))
         uiOutput('sortable2_rui')
       )
     ),

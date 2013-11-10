@@ -1,7 +1,8 @@
 options(shiny.trace=TRUE)
 
 dat <- mtcars[1:5,c('mpg','cyl','disp','hp')]
-dat2 <- mtcars[1:5,c('drat', 'wt', 'vs')]
+myfactor <- factor(c("Me", "Myself", "and", "I"))
+dat2 <- data.frame(myfactor)
 
 shinyServer(function(input, output) {
 
@@ -16,7 +17,7 @@ shinyServer(function(input, output) {
     print(input$sortable)
   })
 
-  getdata <- reactive({
+  output$showData <- renderTable({
 
     if(is.null(input$sortable)) {
       ordVars <- colnames(dat)
@@ -27,33 +28,20 @@ shinyServer(function(input, output) {
 
   })
 
-  output$showData <- renderTable({
-    getdata()
-  })
-
-
   # 2nd sortable
   output$sortable2_rui <- renderUI({
-    returnOrder("sortable2",colnames(dat2))
-  })
-
-  getdata2 <- reactive({
-
-    if(is.null(input$sortable2)) {
-      ordVars <- colnames(dat2)
-    } else {
-      ordVars <- input$sortable2
-    }
-    dat2[,ordVars, drop = FALSE]
-
+    returnOrder("sortable2",levels(dat2$myfactor))
   })
 
   output$showData2 <- renderTable({
-    getdata2()
+    print(dat2)
   })
 
   output$showorder2 <- renderPrint({
-    print(input$sortable2)
+    if(!is.null(input$sortable2)) {
+      dat2$myfactor <- factor(dat2$myfactor, levels = input$sortable2)
+    }
+    summary(dat2)
   })
 
 }) 

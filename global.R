@@ -7,8 +7,6 @@ html_list <- function(vars, id) {
 
 returnOrder <- function(inputId, vars) {
   tagList(
-    # singleton(tags$html(includeHTML('www/sort.html'))),
-    # singleton(tags$head(tags$script(src = 'http://code.jquery.com/ui/1.10.3/jquery-ui.js'))),
     singleton(tags$head(tags$script(src = 'js/sort.js'))),
     singleton(includeCSS("www/sort.css")),
     HTML(html_list(vars, inputId)),
