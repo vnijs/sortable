@@ -17,7 +17,8 @@ shinyUI(
       tableOutput('showData'),
       verbatimTextOutput('showorder'),
       tableOutput('showData2'),
-      verbatimTextOutput('showorder2')
+      verbatimTextOutput('showorder2'),
+      sliderInput("someSlider", "Some Slider", min=1, max=5, value=1)
     )
   )
 )
